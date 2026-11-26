@@ -1,0 +1,8 @@
+{
+  "name": "ShopX BD online",
+  "description": "Bangladeshi multi-brand e-commerce marketplace featuring curated local and global products in BDT, bKash/Nagad/SSLCommerz/COD checkout, delivery tracking, wishlist, and cloud-synced orders.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

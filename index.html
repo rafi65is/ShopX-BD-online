@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ShopX BD online — Bangladesh's Curated Marketplace</title>
+  <meta name="description" content="Bangladeshi multi-brand e-commerce marketplace featuring curated local and global products in BDT, bKash/Nagad/SSLCommerz/COD checkout, delivery tracking, and wishlist." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Outfit:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Top Announcement Bar -->
+  <div class="announcement-bar" id="announcementBar">
+    <span id="announcementText"></span>
+  </div>
+
+  <!-- Sticky Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#top" class="brand-lockup" aria-label="ShopX BD online Home">
+        <span class="brand-emblem" aria-hidden="true">SX</span>
+        <span class="brand-text">
+          <strong class="brand-name">ShopX BD online</strong>
+          <small class="brand-tagline" data-i18n="tagline"></small>
+        </span>
+      </a>
+
+      <div class="header-search-wrap">
+        <span class="search-icon" aria-hidden="true">🔍</span>
+        <input
+          type="search"
+          id="searchInput"
+          class="search-input"
+          autocomplete="off"
+        />
+      </div>
+
+      <div class="header-actions">
+        <label class="division-pill" title="Delivery Division">
+          <span class="pin-icon" aria-hidden="true">📍</span>
+          <select id="divisionSelect" aria-label="Delivery Division"></select>
+        </label>
+
+        <button type="button" id="langToggleBtn" class="btn-pill btn-lang" aria-label="Switch Language">
+          English
+        </button>
+
+        <button type="button" id="openOrdersBtn" class="btn-icon-pill" aria-label="Orders">
+          <span>📦</span>
+          <span class="btn-label" data-i18n="navOrders"></span>
+          <span class="count-badge hidden" id="ordersBadge">0</span>
+        </button>
+
+        <button type="button" id="openWishlistBtn" class="btn-icon-pill" aria-label="Wishlist">
+          <span>♡</span>
+          <span class="btn-label" data-i18n="navWishlist"></span>
+          <span class="count-badge hidden" id="wishlistBadge">0</span>
+        </button>
+
+        <button type="button" id="openCartBtn" class="btn-primary-pill" aria-label="Shopping Bag">
+          <span>🛍️</span>
+          <span data-i18n="navCart"></span>
+          <span class="cart-badge" id="cartBadge">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="top" class="container main-content">
+    <!-- Hero Banner -->
+    <section class="hero-banner" aria-label="Featured Storefront Banner">
+      <div class="hero-copy">
+        <span class="hero-badge" id="heroBadge"></span>
+        <h1 class="hero-headline" id="heroHeadline"></h1>
+        <p class="hero-subtext" id="heroSubtext"></p>
+        <div class="hero-cta-row">
+          <a href="#catalogSection" class="btn-hero-primary" data-i18n="shopNow"></a>
+          <button type="button" class="btn-hero-secondary" id="copyPromoBtn">
+            BANGLA250 📋
+          </button>
+        </div>
+        <div class="payment-trust-row">
+          <span class="trust-pill bkash">bKash</span>
+          <span class="trust-pill nagad">Nagad</span>
+          <span class="trust-pill rocket">Rocket</span>
+          <span class="trust-pill ssl">SSLCommerz</span>
+          <span class="trust-pill cod">COD</span>
+        </div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="hero-art-card">
+          <div class="motif-circle"></div>
+          <div class="hero-stat-chip top">✨ 100% Authentic GI Craft</div>
+          <div class="hero-center-emblem">
+            <span class="hero-taka">৳</span>
+            <span class="hero-bd-tag">BANGLADESH CURATED</span>
+          </div>
+          <div class="hero-stat-chip bottom">🚚 Same-day Dhaka • 64 Districts</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Flash Deals Rail -->
+    <section class="section-block" id="flashDealsSection">
+      <div class="section-header">
+        <div>
+          <div class="flash-title-row">
+            <span class="flash-pill">⚡ FLASH</span>
+            <h2 class="section-title" data-i18n="flashTitle"></h2>
+          </div>
+          <p class="section-subtitle" data-i18n="flashSubtitle"></p>
+        </div>
+        <div class="countdown-chip" id="flashCountdown">05h 42m left</div>
+      </div>
+      <div class="flash-rail" id="flashRail"></div>
+    </section>
+
+    <!-- Catalog Filter & Grid -->
+    <section class="section-block" id="catalogSection">
+      <div class="section-header catalog-header">
+        <div>
+          <h2 class="section-title" id="curatedTitle"></h2>
+          <p class="section-subtitle" id="catalogCountText"></p>
+        </div>
+        <div class="sort-wrap">
+          <label for="sortSelect" class="sr-only">Sort</label>
+          <select id="sortSelect" class="sort-select"></select>
+        </div>
+      </div>
+
+      <div class="category-chips" id="categoryChips" role="tablist" aria-label="Product Categories"></div>
+
+      <div class="product-grid" id="productGrid"></div>
+
+      <div class="empty-state hidden" id="emptyCatalogState">
+        <p data-i18n="noMatchingItems"></p>
+        <button type="button" id="resetFilterBtn" class="btn-outline" data-i18n="showAllProducts"></button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>
+        <strong>ShopX BD online</strong>
+        <p class="footer-note" data-i18n="footerNote"></p>
+      </div>
+      <div class="footer-links">
+        <span>Pathao Courier • Steadfast • RedX</span>
+        <a href="https://wa.me/8801778146634" target="_blank" rel="noopener noreferrer" class="footer-wa-link">
+          WhatsApp Support: 01778146634
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating WhatsApp Support Button -->
+  <a
+    href="https://wa.me/8801778146634"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="whatsapp-fab"
+    aria-label="Chat with Support on WhatsApp"
+    title="WhatsApp Support"
+  >
+    <svg viewBox="0 0 32 32" width="26" height="26" fill="currentColor" aria-hidden="true">
+      <path d="M16 3C8.82 3 3 8.82 3 16c0 2.31.61 4.56 1.77 6.55L3 29l6.65-1.74A12.94 12.94 0 0 0 16 29c7.18 0 13-5.82 13-13S23.18 3 16 3zm0 23.62c-2.06 0-4.08-.55-5.84-1.6l-.42-.25-3.95 1.03 1.05-3.85-.27-.44A10.56 10.56 0 0 1 5.38 16c0-5.86 4.76-10.62 10.62-10.62S26.62 10.14 26.62 16 21.86 26.62 16 26.62zm5.82-7.95c-.32-.16-1.88-.93-2.17-1.03-.29-.11-.5-.16-.71.16-.21.32-.82 1.03-1.01 1.24-.19.21-.37.24-.69.08-.32-.16-1.35-.5-2.57-1.59-.95-.85-1.59-1.9-1.78-2.22-.19-.32-.02-.49.14-.65.14-.14.32-.37.48-.56.16-.19.21-.32.32-.53.11-.21.05-.4-.03-.56-.08-.16-.71-1.71-.97-2.34-.26-.62-.52-.53-.71-.54h-.61c-.21 0-.56.08-.85.4-.29.32-1.12 1.1-1.12 2.68s1.15 3.11 1.31 3.32c.16.21 2.26 3.45 5.47 4.84.76.33 1.36.53 1.82.67.77.24 1.46.21 2.01.13.61-.09 1.88-.77 2.14-1.51.26-.74.26-1.38.18-1.51-.08-.13-.29-.21-.61-.37z"/>
+    </svg>
+  </a>
+
+  <!-- Product Detail Modal -->
+  <div class="modal-backdrop hidden" id="productModalBackdrop" role="dialog" aria-modal="true" aria-labelledby="modalProductTitle">
+    <div class="modal-card product-modal">
+      <button type="button" class="modal-close" id="closeProductModal" aria-label="Close">✕</button>
+      <div id="productModalBody"></div>
+    </div>
+  </div>
+
+  <!-- Slide-over Drawer (Cart / Wishlist / Orders) -->
+  <div class="drawer-backdrop hidden" id="drawerBackdrop">
+    <aside class="drawer-panel" role="dialog" aria-modal="true" aria-labelledby="drawerTitle">
+      <div class="drawer-header">
+        <h2 id="drawerTitle"></h2>
+        <button type="button" class="modal-close" id="closeDrawerBtn" aria-label="Close">✕</button>
+      </div>
+      <div class="drawer-body" id="drawerBody"></div>
+    </aside>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast hidden" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>

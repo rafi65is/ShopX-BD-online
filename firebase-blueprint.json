@@ -1,0 +1,254 @@
+{
+  "entities": {
+    "CloudProduct": {
+      "title": "CloudProduct",
+      "description": "Developer-managed live marketplace product stored in Firestore and synced in real time to all shoppers.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "description": "Product display title." },
+        "brandName": { "type": "string", "description": "Merchant or brand name." },
+        "originCity": { "type": "string", "description": "Bangladeshi origin city or hub." },
+        "categoryId": { "type": "string", "description": "Dynamic or default product category identifier." },
+        "priceBdt": { "type": "integer", "description": "Current selling price in BDT." },
+        "originalPriceBdt": { "type": "integer", "description": "Previous price before discount in BDT." },
+        "rating": { "type": "number", "description": "Product rating from 0 to 5." },
+        "reviewCount": { "type": "integer", "description": "Number of customer reviews." },
+        "description": { "type": "string", "description": "Product caption and full description." },
+        "highlights": { "type": "array", "description": "Up to 10 bullet highlights." },
+        "variants": { "type": "array", "description": "Available sizes, colors, or editions." },
+        "deliveryEstimate": { "type": "string", "description": "Courier ETA text." },
+        "flashDeal": { "type": "boolean", "description": "Whether the item appears in Flash Deals." },
+        "discountEndEpochMs": { "type": "integer", "description": "Epoch millis when discount expires (0 if none)." },
+        "artisanVerified": { "type": "boolean", "description": "Whether artisan/official badge is shown." },
+        "imageKey": {
+          "type": "string",
+          "enum": ["fashion", "tech", "artisan", "hero"],
+          "description": "Bundled visual theme key."
+        },
+        "imageData": { "type": "string", "description": "Optional custom image URL or compressed JPEG base64 data URI." },
+        "accentHex": { "type": "integer", "description": "ARGB tint integer." },
+        "badgeLabel": { "type": "string", "description": "Optional promotional pill text." },
+        "published": { "type": "boolean", "description": "Whether visible to regular shoppers." },
+        "updatedByEmail": { "type": "string", "description": "Developer email that last saved this item." },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Server creation timestamp." },
+        "updatedAt": { "type": "string", "format": "date-time", "description": "Server update timestamp." }
+      },
+      "required": [
+        "name",
+        "brandName",
+        "originCity",
+        "categoryId",
+        "priceBdt",
+        "originalPriceBdt",
+        "rating",
+        "reviewCount",
+        "description",
+        "highlights",
+        "variants",
+        "deliveryEstimate",
+        "flashDeal",
+        "discountEndEpochMs",
+        "artisanVerified",
+        "imageKey",
+        "imageData",
+        "accentHex",
+        "published",
+        "updatedByEmail",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "StoreConfig": {
+      "title": "StoreConfig",
+      "description": "Developer-customized storefront branding, hero banner, product categories, navigation tabs, and flash deal settings.",
+      "type": "object",
+      "properties": {
+        "appName": { "type": "string", "description": "Storefront display title." },
+        "appTagline": { "type": "string", "description": "Subtitle/tagline text." },
+        "searchPlaceholder": { "type": "string", "description": "Search input hint." },
+        "curatedSectionTitle": { "type": "string", "description": "Main product grid section title." },
+        "heroBannerVisible": { "type": "boolean", "description": "Whether the hero banner is shown." },
+        "heroImageData": { "type": "string", "description": "Optional custom hero banner URL or base64 data URI." },
+        "heroBadge": { "type": "string", "description": "Promo pill text on hero banner." },
+        "heroHeadline": { "type": "string", "description": "Main hero headline." },
+        "heroSubtext": { "type": "string", "description": "Hero supporting caption." },
+        "flashDealsVisible": { "type": "boolean", "description": "Whether the flash deals rail is shown." },
+        "flashDealTitle": { "type": "string", "description": "Flash Deals section heading." },
+        "flashDealSubtitle": { "type": "string", "description": "Flash Deals discount label." },
+        "flashDealEndEpochMs": { "type": "integer", "description": "Epoch millis for live flash deal countdown (0 if disabled)." },
+        "announcementText": { "type": "string", "description": "Optional top storefront announcement banner." },
+        "categories": { "type": "array", "description": "Dynamic editable list of product types/categories." },
+        "navTabs": { "type": "array", "description": "Customizable navigation tabs and custom pages." },
+        "deletedProductIds": { "type": "array", "description": "IDs of default catalog products permanently deleted by the developer." },
+        "supportWhatsApp": { "type": "string", "description": "WhatsApp number for the customer support team." },
+        "updatedByEmail": { "type": "string", "description": "Developer email." },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Server creation timestamp." },
+        "updatedAt": { "type": "string", "format": "date-time", "description": "Server update timestamp." }
+      },
+      "required": [
+        "appName",
+        "appTagline",
+        "searchPlaceholder",
+        "curatedSectionTitle",
+        "heroBannerVisible",
+        "heroImageData",
+        "heroBadge",
+        "heroHeadline",
+        "heroSubtext",
+        "flashDealsVisible",
+        "flashDealTitle",
+        "flashDealSubtitle",
+        "flashDealEndEpochMs",
+        "announcementText",
+        "categories",
+        "navTabs",
+        "updatedByEmail",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "CartItem": {
+      "title": "CartItem",
+      "description": "Shopping cart line item persisted for an authenticated shopper.",
+      "type": "object",
+      "properties": {
+        "productId": { "type": "string" },
+        "productName": { "type": "string" },
+        "brandName": { "type": "string" },
+        "variantLabel": { "type": "string" },
+        "unitPriceBdt": { "type": "integer" },
+        "quantity": { "type": "integer" },
+        "categoryId": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": [
+        "productId", "productName", "brandName", "variantLabel",
+        "unitPriceBdt", "quantity", "categoryId", "createdAt", "updatedAt"
+      ]
+    },
+    "WishlistItem": {
+      "title": "WishlistItem",
+      "description": "Saved wishlist product for an authenticated shopper.",
+      "type": "object",
+      "properties": {
+        "productId": { "type": "string" },
+        "productName": { "type": "string" },
+        "brandName": { "type": "string" },
+        "priceBdt": { "type": "integer" },
+        "categoryId": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": [
+        "productId", "productName", "brandName", "priceBdt", "categoryId", "createdAt"
+      ]
+    },
+    "DeliveryAddress": {
+      "title": "DeliveryAddress",
+      "description": "Saved Bangladeshi delivery address for checkout.",
+      "type": "object",
+      "properties": {
+        "recipientName": { "type": "string" },
+        "phoneNumber": { "type": "string" },
+        "division": { "type": "string" },
+        "area": { "type": "string" },
+        "streetDetails": { "type": "string" },
+        "addressLabel": { "type": "string", "enum": ["Home", "Office", "Other"] },
+        "primaryAddress": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": [
+        "recipientName", "phoneNumber", "division", "area",
+        "streetDetails", "addressLabel", "primaryAddress", "createdAt", "updatedAt"
+      ]
+    },
+    "ShopOrder": {
+      "title": "ShopOrder",
+      "description": "Placed customer order with Bangladeshi payment method and courier partner.",
+      "type": "object",
+      "properties": {
+        "orderNumber": { "type": "string" },
+        "status": {
+          "type": "string",
+          "enum": ["PLACED", "CONFIRMED", "PACKED", "OUT_FOR_DELIVERY", "DELIVERED", "CANCELLED"]
+        },
+        "paymentMethod": {
+          "type": "string",
+          "enum": ["BKASH", "NAGAD", "ROCKET", "SSLCOMMERZ", "COD"]
+        },
+        "paymentStatus": { "type": "string", "enum": ["PAID", "PENDING_COD"] },
+        "courierPartner": { "type": "string", "enum": ["Pathao Courier", "Steadfast", "RedX"] },
+        "subtotalBdt": { "type": "integer" },
+        "deliveryFeeBdt": { "type": "integer" },
+        "discountBdt": { "type": "integer" },
+        "totalBdt": { "type": "integer" },
+        "itemCount": { "type": "integer" },
+        "itemSummaries": { "type": "array" },
+        "deliverySummary": { "type": "string" },
+        "promoCode": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": [
+        "orderNumber", "status", "paymentMethod", "paymentStatus", "courierPartner",
+        "subtotalBdt", "deliveryFeeBdt", "discountBdt", "totalBdt", "itemCount",
+        "itemSummaries", "deliverySummary", "createdAt", "updatedAt"
+      ]
+    },
+    "StoreAd": {
+      "title": "StoreAd",
+      "description": "Developer-managed company advertisement (photo or video + caption) displayed live to shoppers.",
+      "type": "object",
+      "properties": {
+        "companyName": { "type": "string" },
+        "title": { "type": "string" },
+        "caption": { "type": "string" },
+        "mediaType": { "type": "string", "enum": ["photo", "video"] },
+        "mediaData": { "type": "string" },
+        "videoThumbData": { "type": "string" },
+        "ctaLabel": { "type": "string" },
+        "ctaUrl": { "type": "string" },
+        "active": { "type": "boolean" },
+        "updatedByEmail": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": [
+        "companyName", "title", "caption", "mediaType", "mediaData",
+        "videoThumbData", "ctaLabel", "ctaUrl", "active", "updatedByEmail",
+        "createdAt", "updatedAt"
+      ]
+    }
+  },
+  "firestore": {
+    "/products/{productId}": {
+      "schema": { "$ref": "#/entities/CloudProduct" },
+      "description": "Live developer-customized and published marketplace products."
+    },
+    "/store_config/{configId}": {
+      "schema": { "$ref": "#/entities/StoreConfig" },
+      "description": "Storefront hero banner, announcement, and flash-deal timer settings."
+    },
+    "/ads/{adId}": {
+      "schema": { "$ref": "#/entities/StoreAd" },
+      "description": "Developer-managed company advertisements."
+    },
+    "/users/{userId}/cart/{cartItemId}": {
+      "schema": { "$ref": "#/entities/CartItem" },
+      "description": "User-scoped shopping cart items."
+    },
+    "/users/{userId}/wishlist/{wishlistItemId}": {
+      "schema": { "$ref": "#/entities/WishlistItem" },
+      "description": "User-scoped wishlist products."
+    },
+    "/users/{userId}/addresses/{addressId}": {
+      "schema": { "$ref": "#/entities/DeliveryAddress" },
+      "description": "User-scoped Bangladeshi delivery addresses."
+    },
+    "/users/{userId}/orders/{orderId}": {
+      "schema": { "$ref": "#/entities/ShopOrder" },
+      "description": "User-scoped order history and tracking records."
+    }
+  }
+}
